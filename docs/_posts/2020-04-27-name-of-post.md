@@ -38,8 +38,6 @@ To start a new notebook use the command:
 `juypter notebook`
 
 This will open a new browser window pointing to ` http://localhost:8888/` or similar. You should now see an option to create a new notebook using kotlin shell.
-![Screenshot%202020-04-27%20at%2015.35.37.png](attachment:Screenshot%202020-04-27%20at%2015.35.37.png)
-
-
+![png]({{ "/assets/images/installation_complete.png" }})
 
 Next, we will create a new notebook and write some kotlin code
