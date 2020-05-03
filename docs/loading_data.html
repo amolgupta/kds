@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>index</title>
+<title>loading_data</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13074,26 +13074,89 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="p">%</span><span class="n">use</span> <span class="n">krangl</span><span class="p">(</span><span class="m">0.10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="K4DS">K4DS<a class="anchor-link" href="#K4DS">&#182;</a></h1><h3 id="A-cheat-sheet-for-using-Kotlin-for-data-science">A cheat sheet for using Kotlin for data science<a class="anchor-link" href="#A-cheat-sheet-for-using-Kotlin-for-data-science">&#182;</a></h3><ul>
-<li><a href="Setup.html">Installation and setup</a></li>
-<li><a href="loading_data.html">Reading from a file</a></li>
-<li><a href="BasicCharts.html">Simple Charts</a></li>
-<li><a href="loading_data.html">Querying data</a></li>
-<li><a href="Dependencies.html">Adding a dependency</a></li>
-</ul>
+<h1 id="Loading-data-files">Loading data files<a class="anchor-link" href="#Loading-data-files">&#182;</a></h1><p>This section will use the forex dataset from <a href="https://www.kaggle.com/brunotly/foreign-exchange-rates-per-dollar-20002019">kaggle</a></p>
+<p>It is downloaded and put in a folder called <code>/data/</code> in the repository. (As  a cleanup step, all invalid values in the data set have been replaced by <code>0.0</code>. These will be taken care of in the next steps)</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="k">val</span> <span class="py">df</span> <span class="p">=</span> <span class="n">DataFrame</span><span class="p">.</span><span class="n">readCSV</span><span class="p">(</span><span class="s">&quot;../data/fx-rates.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">maxRows</span><span class="p">=</span><span class="m">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>A DataFrame: 5213 x 24
+         Time Serie    AUDX    EURX    NZDX    GBPX   BRAZIL - REAL/US$
+ 1   0   2000-01-03   1.517   0.985   1.903   0.615               1.805
+ 2   1   2000-01-04   1.524    0.97   1.924   0.611               1.841
+ 3   2   2000-01-05   1.527   0.968   1.934   0.609               1.856
+ 4   3   2000-01-06   1.529   0.969   1.944   0.607                1.84
+ 5   4   2000-01-07   1.527   0.971   1.938    0.61               1.831
+ 6   5   2000-01-10   1.524   0.975   1.935   0.611               1.819
+ 7   6   2000-01-11   1.521   0.969   1.937   0.607               1.823
+ 8   7   2000-01-12    1.52   0.973   1.929   0.607               1.835
+ 9   8   2000-01-13   1.495   0.974   1.908   0.607               1.814
+10   9   2000-01-14     1.5   0.987   1.919   0.612               1.805
+and 5203 more rows, and and 17 more variables: CHINA - YUAN/US$, HONG KONG - HONG KONG DOLLAR/US$,
+I0.0IA - I0.0IAN RUPEE/US$, KOREA - WON/US$, MEXICO - MEXICAN PESO/US$, SOUTH AFRICA - RA0.0/US$,
+SINGAPORE - SINGAPORE DOLLAR/US$, DENMARK - DANISH KRONE/US$, JAPAN - YEN/US$, MALAYSIA - RINGGIT/
+US$, NORWAY - NORWEGIAN KRONE/US$, SWEDEN - KRONA/US$, SRI LANKA - SRI LANKAN RUPEE/US$, SWITZERLA0.
+0 - FRANC/US$, TAIWAN - NEW TAIWAN DOLLAR/US$, THAILA0.0 - BAHT/US$
+
+</pre>
+</div>
+</div>
 
 </div>
 </div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
