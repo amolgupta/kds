@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>index</title>
+<title>Dependencies</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13077,23 +13077,103 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="A-cheat-sheet-for-using-Kotlin-for-data-science">A cheat sheet for using Kotlin for data science<a class="anchor-link" href="#A-cheat-sheet-for-using-Kotlin-for-data-science">&#182;</a></h3><ul>
-<li><a href="Setup.html">Installation and setup</a></li>
-<li><a href="loading_data.html">Reading from a file</a></li>
-<li><a href="BasicCharts.html">Simple Charts</a></li>
-<li><a href="loading_data.html">Querying data</a></li>
-<li><a href="Dependencies.html">Adding a dependency</a></li>
-</ul>
+<h1 id="Adding-a-dependency">Adding a dependency<a class="anchor-link" href="#Adding-a-dependency">&#182;</a></h1><p><code>kotlin-jupyther</code> supports a few libraries by default. To view the default libs run the <code>:help</code> command</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-kotlin"><pre><span></span>
+<div class=" highlight hl-kotlin"><pre><span></span><span class="p">:</span><span class="n">help</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[43]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Commands:
+    :help - display help
+    :classpath - show current classpath
+
+Magics
+    %use - include supported libraries
+        Usage: %use klaxon(5.0.1), lets-plot
+    %trackClasspath - log current classpath changes
+
+Supported libraries:
+    spark 
+    koma https://koma.kyonifer.com/index.html
+    fuel https://github.com/kittinunf/fuel
+    numpy https://github.com/Kotlin/kotlin-numpy
+    kotlin-statistics https://github.com/thomasnield/kotlin-statistics
+    mysql https://github.com/mysql/mysql-connector-j
+    klaxon https://github.com/cbeust/klaxon
+    krangl https://github.com/holgerbrandl/krangl
+    lets-plot https://github.com/JetBrains/lets-plot-kotlin
+    kmath https://github.com/mipt-npm/kmath
+    gral https://github.com/eseifert/gral
+    kravis https://github.com/holgerbrandl/kravis
+    exposed https://github.com/JetBrains/Exposed</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Adding an external dependency is easy. Here we add <code>Gson</code> from <a href="https://mvnrepository.com/artifact/com.google.code.gson/gson">https://mvnrepository.com/artifact/com.google.code.gson/gson</a> to the notebook.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="n">@file</span><span class="p">:</span><span class="n">Repository</span><span class="p">(</span><span class="s">&quot;https://repo1.maven.org/maven2/&quot;</span><span class="p">)</span>
+<span class="n">@file</span><span class="p">:</span><span class="n">DependsOn</span><span class="p">(</span><span class="s">&quot;com.google.code.gson:gson:2.8.6&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once the library is added, it can be inported using regular kotlin code.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="k">import</span> <span class="nn">com.google.gson.Gson;</span>
+<span class="k">val</span> <span class="py">gson</span> <span class="p">=</span> <span class="n">Gson</span><span class="p">()</span>
 </pre></div>
 
     </div>

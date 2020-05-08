@@ -3,4 +3,5 @@ lib/
 share/
 notebooks/.*.ipynb
 /etc
+.ipynb_checkpoints/
 notebooks/.ipynb_checkpoints/
