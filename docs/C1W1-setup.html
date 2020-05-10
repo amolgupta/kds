@@ -13126,6 +13126,106 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Getting help on default libraries</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="p">:</span><span class="n">help</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[1]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Commands:
+    :help - display help
+    :classpath - show current classpath
+
+Magics
+    %use - include supported libraries
+        Usage: %use klaxon(5.0.1), lets-plot
+    %trackClasspath - log current classpath changes
+
+Supported libraries:
+    spark 
+    koma https://koma.kyonifer.com/index.html
+    fuel https://github.com/kittinunf/fuel
+    numpy https://github.com/Kotlin/kotlin-numpy
+    kotlin-statistics https://github.com/thomasnield/kotlin-statistics
+    mysql https://github.com/mysql/mysql-connector-j
+    klaxon https://github.com/cbeust/klaxon
+    krangl https://github.com/holgerbrandl/krangl
+    lets-plot https://github.com/JetBrains/lets-plot-kotlin
+    kmath https://github.com/mipt-npm/kmath
+    gral https://github.com/eseifert/gral
+    kravis https://github.com/holgerbrandl/kravis
+    exposed https://github.com/JetBrains/Exposed</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Adding an external dependency is easy. Here we add <code>Gson</code> from <a href="https://mvnrepository.com/artifact/com.google.code.gson/gson">https://mvnrepository.com/artifact/com.google.code.gson/gson</a> to the notebook.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="n">@file</span><span class="p">:</span><span class="n">Repository</span><span class="p">(</span><span class="s">&quot;https://repo1.maven.org/maven2/&quot;</span><span class="p">)</span>
+<span class="n">@file</span><span class="p">:</span><span class="n">DependsOn</span><span class="p">(</span><span class="s">&quot;com.google.code.gson:gson:2.8.6&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">//Once the library is added, it can be inported using regular kotlin code.</span>
+<span class="k">import</span> <span class="nn">com.google.gson.Gson;</span>
+<span class="k">val</span> <span class="py">gson</span> <span class="p">=</span> <span class="n">Gson</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Next, we will create a new notebook and write some kotlin code</p>
 
 </div>
