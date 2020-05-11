@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>index</title>
+<title>Dataframes</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13077,43 +13077,358 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Kotlin-for-data-science">Kotlin for data science<a class="anchor-link" href="#Kotlin-for-data-science">&#182;</a></h3><p>This is a Kotlin translation of the poupular course "Applied Data science with Python specialization" by "University of Michigan" available on <a href="https://www.coursera.org/specializations/data-science-python">Coursera</a>
-Contribute to this on <a href="https://github.com/amolgupta/kds">github</a></p>
-<h4 id="Introduction-to-Data-Science-in-Python">Introduction to Data Science in Python<a class="anchor-link" href="#Introduction-to-Data-Science-in-Python">&#182;</a></h4><ul>
-<li>Week 1<ul>
-<li><a href="C1W1-setup.html">Setup Juypter notebooks</a></li>
-<li><a href="C1W1-krangl.html">Reading a file and querying data</a></li>
-<li><a href="Numpy.html">Numpy</a></li>
-</ul>
-</li>
-<li>Week 2<ul>
-<li><a href="Dataframes.html">DataFrames</a></li>
-</ul>
-</li>
-<li>Week 3</li>
-<li>Week 4</li>
-</ul>
-<h4 id="Applied-Plotting,-Charting-&amp;-Data-Representation-in-Kotlin">Applied Plotting, Charting &amp; Data Representation in Kotlin<a class="anchor-link" href="#Applied-Plotting,-Charting-&amp;-Data-Representation-in-Kotlin">&#182;</a></h4><ul>
-<li>Week 1</li>
-<li>Week 2</li>
-<li>Week 3</li>
-<li>Week 4</li>
-</ul>
-<h4 id="Applied-Machine-Learning-in-Kotlin">Applied Machine Learning in Kotlin<a class="anchor-link" href="#Applied-Machine-Learning-in-Kotlin">&#182;</a></h4><ul>
-<li>Week 1</li>
-<li>Week 2</li>
-<li>Week 3</li>
-<li>Week 4</li>
-</ul>
-<h4 id="Applied-Text-Mining-in-Kotlin">Applied Text Mining in Kotlin<a class="anchor-link" href="#Applied-Text-Mining-in-Kotlin">&#182;</a></h4><ul>
-<li>Week 1</li>
-<li>Week 2</li>
-<li>Week 3</li>
-<li>Week 4</li>
-</ul>
+<p>A kotlin <code>list</code> and <code>map</code> can be used as an equivalant of <code>Series</code> in <code>pandas</code></p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="k">val</span> <span class="py">animals</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="s">&quot;Tiger&quot;</span><span class="p">,</span><span class="s">&quot;Bear&quot;</span><span class="p">,</span><span class="s">&quot;Moose&quot;</span><span class="p">)</span>
+<span class="k">val</span> <span class="py">numbers</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// To check if the list is empty&quot;</span>
+<span class="n">numbers</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>false</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Using a map </span>
+<span class="k">var</span> <span class="py">sports</span> <span class="p">=</span> <span class="n">mapOf</span><span class="p">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">String</span><span class="p">&gt;(</span>
+          <span class="s">&quot;Bhutan&quot;</span> <span class="n">to</span> <span class="s">&quot;Archery&quot;</span><span class="p">,</span>
+          <span class="s">&quot;Scotland&quot;</span> <span class="n">to</span> <span class="s">&quot;Golf&quot;</span><span class="p">,</span>
+           <span class="s">&quot;Japan&quot;</span> <span class="n">to</span> <span class="s">&quot;Sumo&quot;</span><span class="p">,</span>
+          <span class="s">&quot;South Korea&quot;</span> <span class="n">to</span> <span class="s">&quot;Taekwondo&quot;</span>
+<span class="p">)</span>
+
+<span class="n">sports</span><span class="p">.</span><span class="n">keys</span><span class="p">.</span><span class="n">forEach</span><span class="p">{</span><span class="n">println</span><span class="p">(</span><span class="n">it</span><span class="p">)}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Bhutan
+Scotland
+Japan
+South Korea
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Querying-a-list">Querying a list<a class="anchor-link" href="#Querying-a-list">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// You can iterate over a map to find the ith value or use the key as follow</span>
+<span class="n">sports</span><span class="p">[</span><span class="s">&quot;Golf&quot;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Iterating over a list</span>
+
+<span class="k">val</span> <span class="py">s</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="m">100.00</span><span class="p">,</span> <span class="m">120.00</span><span class="p">,</span> <span class="m">101.00</span><span class="p">,</span> <span class="m">3.00</span><span class="p">)</span>
+<span class="k">var</span> <span class="py">sum</span> <span class="p">=</span> <span class="m">0.0</span>
+<span class="n">s</span><span class="p">.</span><span class="n">forEach</span><span class="p">{</span> <span class="n">sum</span><span class="p">+=</span> <span class="n">it</span><span class="p">}</span>
+<span class="n">sum</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[70]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>324.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Create a list of random numbers</span>
+
+<span class="k">var</span> <span class="py">list</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;()</span>
+<span class="n">repeat</span><span class="p">(</span><span class="m">5</span><span class="p">){</span>
+    <span class="n">list</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="m">0</span> <span class="n">until</span> <span class="m">100</span><span class="p">).</span><span class="n">random</span><span class="p">())</span>
+<span class="p">}</span>
+<span class="n">list</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[71]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[73, 27, 1, 95, 95]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="k">import</span> <span class="nn">kotlin.system.measureNanoTime</span>
+
+<span class="k">val</span> <span class="py">time</span> <span class="p">=</span> <span class="n">measureNanoTime</span> <span class="p">{</span>
+<span class="k">var</span> <span class="py">sum</span> <span class="p">=</span> <span class="m">0.0</span>
+<span class="n">list</span><span class="p">.</span><span class="n">forEach</span><span class="p">{</span> <span class="n">sum</span><span class="p">+=</span> <span class="n">it</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Total time taken $time nano seconds&quot;</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Avg time taken per loop ${time/1000} nano seconds&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Total time taken 40968 nano seconds
+Avg time taken per loop 40 nano seconds
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// TODO add numpy version for comparison</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Add 2 to each element</span>
+<span class="k">val</span> <span class="py">list2</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">map</span><span class="p">{</span> <span class="n">it</span> <span class="p">-&gt;</span> <span class="n">it</span> <span class="p">+</span> <span class="m">2</span><span class="p">}</span>
+<span class="n">list2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[74]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[75, 29, 3, 97, 97]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Append two maps</span>
+<span class="k">var</span> <span class="py">cricket_loving_countries</span> <span class="p">=</span> <span class="n">mapOf</span><span class="p">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">String</span><span class="p">&gt;</span> <span class="p">(</span>
+    <span class="s">&quot;Australia&quot;</span> <span class="n">to</span> <span class="s">&quot;Cricket&quot;</span><span class="p">,</span>
+    <span class="s">&quot;Barbados&quot;</span> <span class="n">to</span> <span class="s">&quot;Cricket&quot;</span><span class="p">,</span>
+    <span class="s">&quot;India&quot;</span> <span class="n">to</span> <span class="s">&quot;Cricket&quot;</span> <span class="p">)</span>
+
+<span class="k">var</span> <span class="py">all_countries</span> <span class="p">=</span> <span class="n">mutableMapOf</span><span class="p">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">String</span><span class="p">&gt;()</span>
+        <span class="n">all_countries</span><span class="p">.</span><span class="n">putAll</span><span class="p">(</span><span class="n">sports</span><span class="p">)</span>
+                <span class="n">all_countries</span><span class="p">.</span><span class="n">putAll</span><span class="p">(</span><span class="n">cricket_loving_countries</span><span class="p">)</span>
+
+<span class="n">print</span><span class="p">(</span><span class="n">all_countries</span><span class="p">.</span><span class="n">keys</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[Bhutan, Scotland, Japan, South Korea, Australia, Barbados, India]</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-DataFrame-Data-Structure">The DataFrame Data Structure<a class="anchor-link" href="#The-DataFrame-Data-Structure">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
