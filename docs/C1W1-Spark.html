@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>index</title>
+<title>C1W1 - Reading and Writing CSV files - Spark</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13074,48 +13074,355 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Kotlin-for-data-science">Kotlin for data science<a class="anchor-link" href="#Kotlin-for-data-science">&#182;</a></h3><p>This is a Kotlin translation of the poupular course "Applied Data science with Python specialization" by "University of Michigan" available on <a href="https://www.coursera.org/specializations/data-science-python">Coursera</a>
-Contribute to this on <a href="https://github.com/amolgupta/kds">github</a></p>
-<h4 id="Introduction-to-Data-Science-in-Python">Introduction to Data Science in Python<a class="anchor-link" href="#Introduction-to-Data-Science-in-Python">&#182;</a></h4><ul>
-<li><a href="C1W1-setup.html">Setup Juypter notebooks</a></li>
-<li>Reading a file and querying data<ul>
-<li><a href="C1W1-krangl.html">Krangl</a></li>
-<li><a href="C1W1-Smile.html">SMILE</a></li>
-<li><a href="C1W1-Spark.html">Apache Spark</a></li>
-</ul>
-</li>
-<li><a href="Numpy.html">Numpy</a></li>
-<li>Week 2<ul>
-<li><a href="Dataframes.html">DataFrames</a></li>
-</ul>
-</li>
-<li>Week 3</li>
-<li>Week 4</li>
-</ul>
-<h4 id="Applied-Plotting,-Charting-&amp;-Data-Representation-in-Kotlin">Applied Plotting, Charting &amp; Data Representation in Kotlin<a class="anchor-link" href="#Applied-Plotting,-Charting-&amp;-Data-Representation-in-Kotlin">&#182;</a></h4><ul>
-<li>Week 1</li>
-<li>Week 2</li>
-<li>Week 3</li>
-<li>Week 4</li>
-</ul>
-<h4 id="Applied-Machine-Learning-in-Kotlin">Applied Machine Learning in Kotlin<a class="anchor-link" href="#Applied-Machine-Learning-in-Kotlin">&#182;</a></h4><ul>
-<li>Week 1</li>
-<li>Week 2</li>
-<li>Week 3</li>
-<li>Week 4</li>
-</ul>
-<h4 id="Applied-Text-Mining-in-Kotlin">Applied Text Mining in Kotlin<a class="anchor-link" href="#Applied-Text-Mining-in-Kotlin">&#182;</a></h4><ul>
-<li>Week 1</li>
-<li>Week 2</li>
-<li>Week 3</li>
-<li>Week 4</li>
-</ul>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="p">%</span><span class="n">use</span> <span class="n">spark</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.sql.SparkSession</span>
+
+<span class="k">var</span> <span class="py">df</span> <span class="p">=</span> <span class="n">SparkSession</span><span class="p">.</span><span class="n">builder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">orCreate</span>
+    <span class="p">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">option</span><span class="p">(</span><span class="s">&quot;header&quot;</span><span class="p">,</span> <span class="s">&quot;true&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">csv</span><span class="p">(</span><span class="s">&quot;../data/mpg.csv&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Show count</span>
+<span class="n">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">count</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>234</pre>
+</div>
+</div>
 
 </div>
 </div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Print columns</span>
+<span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">().</span><span class="n">forEach</span><span class="p">{</span> <span class="n">println</span><span class="p">(</span><span class="n">it</span><span class="p">)}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>id
+manufacturer
+model
+displ
+year
+cyl
+trans
+drv
+cty
+hwy
+fl
+class
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="n">df</span><span class="p">.</span><span class="n">explain</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>== Physical Plan ==
+*(1) FileScan csv [id#2614,manufacturer#2615,model#2616,displ#2617,year#2618,cyl#2619,trans#2620,drv#2621,cty#2622,hwy#2623,fl#2624,class#2625] Batched: false, Format: CSV, Location: InMemoryFileIndex[file:/Users/amolgupta/k-data/data/mpg.csv], PartitionFilters: [], PushedFilters: [], ReadSchema: struct&lt;id:string,manufacturer:string,model:string,displ:string,year:string,cyl:string,trans:strin...
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// See values</span>
+<span class="n">df</span><span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="s">&quot;cyl&quot;</span><span class="p">).</span><span class="n">distinct</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[63]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<html><body><table><tr><th style="text-align:left">cyl</th></tr><tr><td style="text-align:left" title="8">8</td></tr><tr><td style="text-align:left" title="5">5</td></tr><tr><td style="text-align:left" title="6">6</td></tr><tr><td style="text-align:left" title="4">4</td></tr></table></body></html>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Sorty by a column</span>
+<span class="n">df</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&quot;cty&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[59]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<html><body><table><tr><th style="text-align:left">id</th><th style="text-align:left">manufacturer</th><th style="text-align:left">model</th><th style="text-align:left">displ</th><th style="text-align:left">year</th><th style="text-align:left">cyl</th><th style="text-align:left">trans</th><th style="text-align:left">drv</th><th style="text-align:left">cty</th><th style="text-align:left">hwy</th><th style="text-align:left">fl</th><th style="text-align:left">class</th></tr><tr><td style="text-align:left" title="44">44</td><td style="text-align:left" title="dodge">dodge</td><td style="text-align:left" title="caravan 2wd">caravan 2wd</td><td style="text-align:left" title="3.3">3.3</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="6">6</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="f">f</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="17">17</td><td style="text-align:left" title="e">e</td><td style="text-align:left" title="minivan">minivan</td></tr><tr><td style="text-align:left" title="30">30</td><td style="text-align:left" title="chevrolet">chevrolet</td><td style="text-align:left" title="k1500 tahoe 4wd">k1500 tahoe 4wd</td><td style="text-align:left" title="5.3">5.3</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="14">14</td><td style="text-align:left" title="e">e</td><td style="text-align:left" title="suv">suv</td></tr><tr><td style="text-align:left" title="31">31</td><td style="text-align:left" title="chevrolet">chevrolet</td><td style="text-align:left" title="k1500 tahoe 4wd">k1500 tahoe 4wd</td><td style="text-align:left" title="5.7">5.7</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="suv">suv</td></tr><tr><td style="text-align:left" title="20">20</td><td style="text-align:left" title="chevrolet">chevrolet</td><td style="text-align:left" title="c1500 suburban 2wd">c1500 suburban 2wd</td><td style="text-align:left" title="5.3">5.3</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="e">e</td><td style="text-align:left" title="suv">suv</td></tr><tr><td style="text-align:left" title="56">56</td><td style="text-align:left" title="dodge">dodge</td><td style="text-align:left" title="dakota pickup 4wd">dakota pickup 4wd</td><td style="text-align:left" title="5.2">5.2</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="manual(m5)">manual(m5)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="17">17</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="pickup">pickup</td></tr><tr><td style="text-align:left" title="57">57</td><td style="text-align:left" title="dodge">dodge</td><td style="text-align:left" title="dakota pickup 4wd">dakota pickup 4wd</td><td style="text-align:left" title="5.2">5.2</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="pickup">pickup</td></tr><tr><td style="text-align:left" title="62">62</td><td style="text-align:left" title="dodge">dodge</td><td style="text-align:left" title="durango 4wd">durango 4wd</td><td style="text-align:left" title="5.2">5.2</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="16">16</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="suv">suv</td></tr><tr><td style="text-align:left" title="64">64</td><td style="text-align:left" title="dodge">dodge</td><td style="text-align:left" title="durango 4wd">durango 4wd</td><td style="text-align:left" title="5.9">5.9</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="suv">suv</td></tr><tr><td style="text-align:left" title="71">71</td><td style="text-align:left" title="dodge">dodge</td><td style="text-align:left" title="ram 1500 pickup 4wd">ram 1500 pickup 4wd</td><td style="text-align:left" title="5.2">5.2</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="pickup">pickup</td></tr><tr><td style="text-align:left" title="72">72</td><td style="text-align:left" title="dodge">dodge</td><td style="text-align:left" title="ram 1500 pickup 4wd">ram 1500 pickup 4wd</td><td style="text-align:left" title="5.2">5.2</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="manual(m5)">manual(m5)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="16">16</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="pickup">pickup</td></tr><tr><td style="text-align:left" title="74">74</td><td style="text-align:left" title="dodge">dodge</td><td style="text-align:left" title="ram 1500 pickup 4wd">ram 1500 pickup 4wd</td><td style="text-align:left" title="5.9">5.9</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="pickup">pickup</td></tr><tr><td style="text-align:left" title="75">75</td><td style="text-align:left" title="ford">ford</td><td style="text-align:left" title="expedition 2wd">expedition 2wd</td><td style="text-align:left" title="4.6">4.6</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="17">17</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="suv">suv</td></tr><tr><td style="text-align:left" title="76">76</td><td style="text-align:left" title="ford">ford</td><td style="text-align:left" title="expedition 2wd">expedition 2wd</td><td style="text-align:left" title="5.4">5.4</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="17">17</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="suv">suv</td></tr><tr><td style="text-align:left" title="89">89</td><td style="text-align:left" title="ford">ford</td><td style="text-align:left" title="f150 pickup 4wd">f150 pickup 4wd</td><td style="text-align:left" title="5.4">5.4</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="pickup">pickup</td></tr><tr><td style="text-align:left" title="130">130</td><td style="text-align:left" title="jeep">jeep</td><td style="text-align:left" title="grand cherokee 4wd">grand cherokee 4wd</td><td style="text-align:left" title="6.1">6.1</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l5)">auto(l5)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="14">14</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="suv">suv</td></tr><tr><td style="text-align:left" title="131">131</td><td style="text-align:left" title="land rover">land rover</td><td style="text-align:left" title="range rover">range rover</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="suv">suv</td></tr><tr><td style="text-align:left" title="134">134</td><td style="text-align:left" title="land rover">land rover</td><td style="text-align:left" title="range rover">range rover</td><td style="text-align:left" title="4.6">4.6</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="suv">suv</td></tr><tr><td style="text-align:left" title="135">135</td><td style="text-align:left" title="lincoln">lincoln</td><td style="text-align:left" title="navigator 2wd">navigator 2wd</td><td style="text-align:left" title="5.4">5.4</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="17">17</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="suv">suv</td></tr><tr><td style="text-align:left" title="136">136</td><td style="text-align:left" title="lincoln">lincoln</td><td style="text-align:left" title="navigator 2wd">navigator 2wd</td><td style="text-align:left" title="5.4">5.4</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="16">16</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="suv">suv</td></tr><tr><td style="text-align:left" title="199">199</td><td style="text-align:left" title="toyota">toyota</td><td style="text-align:left" title="land cruiser wagon 4wd">land cruiser wagon 4wd</td><td style="text-align:left" title="4.7">4.7</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="suv">suv</td></tr></table><p>... only showing top 20 rows</p></body></html>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Average city milage</span>
+<span class="n">df</span><span class="p">.</span><span class="n">agg</span><span class="p">(</span><span class="n">avg</span><span class="p">(</span><span class="s">&quot;cty&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[60]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<html><body><table><tr><th style="text-align:left">avg(cty)</th></tr><tr><td style="text-align:left" title="16.858974358974358">16.858974358974358</td></tr></table></body></html>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// MAx highway milage</span>
+<span class="n">df</span><span class="p">.</span><span class="n">agg</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="s">&quot;hwy&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[61]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<html><body><table><tr><th style="text-align:left">max(hwy)</th></tr><tr><td style="text-align:left" title="44">44</td></tr></table></body></html>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="n">df</span> <span class="p">=</span> <span class="n">df</span><span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">&quot;cty-km&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">&quot;cty&quot;</span><span class="p">).</span><span class="n">multiply</span><span class="p">(</span><span class="m">1.6</span><span class="p">))</span>
+<span class="n">df</span> <span class="p">=</span> <span class="n">df</span><span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">&quot;hwy-km&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">&quot;hwy&quot;</span><span class="p">).</span><span class="n">multiply</span><span class="p">(</span><span class="m">1.6</span><span class="p">))</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[62]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<html><body><table><tr><th style="text-align:left">id</th><th style="text-align:left">manufacturer</th><th style="text-align:left">model</th><th style="text-align:left">displ</th><th style="text-align:left">year</th><th style="text-align:left">cyl</th><th style="text-align:left">trans</th><th style="text-align:left">drv</th><th style="text-align:left">cty</th><th style="text-align:left">hwy</th><th style="text-align:left">fl</th><th style="text-align:left">class</th><th style="text-align:left">cty-km</th><th style="text-align:left">hwy-km</th></tr><tr><td style="text-align:left" title="1">1</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4">a4</td><td style="text-align:left" title="1.8">1.8</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="auto(l5)">auto(l5)</td><td style="text-align:left" title="f">f</td><td style="text-align:left" title="18">18</td><td style="text-align:left" title="29">29</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="28.8">28.8</td><td style="text-align:left" title="46.400000000000006">46.400000000000006</td></tr><tr><td style="text-align:left" title="2">2</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4">a4</td><td style="text-align:left" title="1.8">1.8</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="manual(m5)">manual(m5)</td><td style="text-align:left" title="f">f</td><td style="text-align:left" title="21">21</td><td style="text-align:left" title="29">29</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="33.6">33.6</td><td style="text-align:left" title="46.400000000000006">46.400000000000006</td></tr><tr><td style="text-align:left" title="3">3</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4">a4</td><td style="text-align:left" title="2">2</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="manual(m6)">manual(m6)</td><td style="text-align:left" title="f">f</td><td style="text-align:left" title="20">20</td><td style="text-align:left" title="31">31</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="32.0">32.0</td><td style="text-align:left" title="49.6">49.6</td></tr><tr><td style="text-align:left" title="4">4</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4">a4</td><td style="text-align:left" title="2">2</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="auto(av)">auto(av)</td><td style="text-align:left" title="f">f</td><td style="text-align:left" title="21">21</td><td style="text-align:left" title="30">30</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="33.6">33.6</td><td style="text-align:left" title="48.0">48.0</td></tr><tr><td style="text-align:left" title="5">5</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4">a4</td><td style="text-align:left" title="2.8">2.8</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="6">6</td><td style="text-align:left" title="auto(l5)">auto(l5)</td><td style="text-align:left" title="f">f</td><td style="text-align:left" title="16">16</td><td style="text-align:left" title="26">26</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="25.6">25.6</td><td style="text-align:left" title="41.6">41.6</td></tr><tr><td style="text-align:left" title="6">6</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4">a4</td><td style="text-align:left" title="2.8">2.8</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="6">6</td><td style="text-align:left" title="manual(m5)">manual(m5)</td><td style="text-align:left" title="f">f</td><td style="text-align:left" title="18">18</td><td style="text-align:left" title="26">26</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="28.8">28.8</td><td style="text-align:left" title="41.6">41.6</td></tr><tr><td style="text-align:left" title="7">7</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4">a4</td><td style="text-align:left" title="3.1">3.1</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="6">6</td><td style="text-align:left" title="auto(av)">auto(av)</td><td style="text-align:left" title="f">f</td><td style="text-align:left" title="18">18</td><td style="text-align:left" title="27">27</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="28.8">28.8</td><td style="text-align:left" title="43.2">43.2</td></tr><tr><td style="text-align:left" title="8">8</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4 quattro">a4 quattro</td><td style="text-align:left" title="1.8">1.8</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="manual(m5)">manual(m5)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="18">18</td><td style="text-align:left" title="26">26</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="28.8">28.8</td><td style="text-align:left" title="41.6">41.6</td></tr><tr><td style="text-align:left" title="9">9</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4 quattro">a4 quattro</td><td style="text-align:left" title="1.8">1.8</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="auto(l5)">auto(l5)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="16">16</td><td style="text-align:left" title="25">25</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="25.6">25.6</td><td style="text-align:left" title="40.0">40.0</td></tr><tr><td style="text-align:left" title="10">10</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4 quattro">a4 quattro</td><td style="text-align:left" title="2">2</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="manual(m6)">manual(m6)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="20">20</td><td style="text-align:left" title="28">28</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="32.0">32.0</td><td style="text-align:left" title="44.800000000000004">44.800000000000004</td></tr><tr><td style="text-align:left" title="11">11</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4 quattro">a4 quattro</td><td style="text-align:left" title="2">2</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="auto(s6)">auto(s6)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="19">19</td><td style="text-align:left" title="27">27</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="30.400000000000002">30.400000000000002</td><td style="text-align:left" title="43.2">43.2</td></tr><tr><td style="text-align:left" title="12">12</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4 quattro">a4 quattro</td><td style="text-align:left" title="2.8">2.8</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="6">6</td><td style="text-align:left" title="auto(l5)">auto(l5)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="25">25</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="24.0">24.0</td><td style="text-align:left" title="40.0">40.0</td></tr><tr><td style="text-align:left" title="13">13</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4 quattro">a4 quattro</td><td style="text-align:left" title="2.8">2.8</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="6">6</td><td style="text-align:left" title="manual(m5)">manual(m5)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="17">17</td><td style="text-align:left" title="25">25</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="27.200000000000003">27.200000000000003</td><td style="text-align:left" title="40.0">40.0</td></tr><tr><td style="text-align:left" title="14">14</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4 quattro">a4 quattro</td><td style="text-align:left" title="3.1">3.1</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="6">6</td><td style="text-align:left" title="auto(s6)">auto(s6)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="17">17</td><td style="text-align:left" title="25">25</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="27.200000000000003">27.200000000000003</td><td style="text-align:left" title="40.0">40.0</td></tr><tr><td style="text-align:left" title="15">15</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a4 quattro">a4 quattro</td><td style="text-align:left" title="3.1">3.1</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="6">6</td><td style="text-align:left" title="manual(m6)">manual(m6)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="25">25</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="24.0">24.0</td><td style="text-align:left" title="40.0">40.0</td></tr><tr><td style="text-align:left" title="16">16</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a6 quattro">a6 quattro</td><td style="text-align:left" title="2.8">2.8</td><td style="text-align:left" title="1999">1999</td><td style="text-align:left" title="6">6</td><td style="text-align:left" title="auto(l5)">auto(l5)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="24">24</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="midsize">midsize</td><td style="text-align:left" title="24.0">24.0</td><td style="text-align:left" title="38.400000000000006">38.400000000000006</td></tr><tr><td style="text-align:left" title="17">17</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a6 quattro">a6 quattro</td><td style="text-align:left" title="3.1">3.1</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="6">6</td><td style="text-align:left" title="auto(s6)">auto(s6)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="17">17</td><td style="text-align:left" title="25">25</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="midsize">midsize</td><td style="text-align:left" title="27.200000000000003">27.200000000000003</td><td style="text-align:left" title="40.0">40.0</td></tr><tr><td style="text-align:left" title="18">18</td><td style="text-align:left" title="audi">audi</td><td style="text-align:left" title="a6 quattro">a6 quattro</td><td style="text-align:left" title="4.2">4.2</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(s6)">auto(s6)</td><td style="text-align:left" title="4">4</td><td style="text-align:left" title="16">16</td><td style="text-align:left" title="23">23</td><td style="text-align:left" title="p">p</td><td style="text-align:left" title="midsize">midsize</td><td style="text-align:left" title="25.6">25.6</td><td style="text-align:left" title="36.800000000000004">36.800000000000004</td></tr><tr><td style="text-align:left" title="19">19</td><td style="text-align:left" title="chevrolet">chevrolet</td><td style="text-align:left" title="c1500 suburban 2wd">c1500 suburban 2wd</td><td style="text-align:left" title="5.3">5.3</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="14">14</td><td style="text-align:left" title="20">20</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="suv">suv</td><td style="text-align:left" title="22.400000000000002">22.400000000000002</td><td style="text-align:left" title="32.0">32.0</td></tr><tr><td style="text-align:left" title="20">20</td><td style="text-align:left" title="chevrolet">chevrolet</td><td style="text-align:left" title="c1500 suburban 2wd">c1500 suburban 2wd</td><td style="text-align:left" title="5.3">5.3</td><td style="text-align:left" title="2008">2008</td><td style="text-align:left" title="8">8</td><td style="text-align:left" title="auto(l4)">auto(l4)</td><td style="text-align:left" title="r">r</td><td style="text-align:left" title="11">11</td><td style="text-align:left" title="15">15</td><td style="text-align:left" title="e">e</td><td style="text-align:left" title="suv">suv</td><td style="text-align:left" title="17.6">17.6</td><td style="text-align:left" title="24.0">24.0</td></tr></table><p>... only showing top 20 rows</p></body></html>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Find average city milage by cylinder</span>
+<span class="n">df</span><span class="p">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s">&quot;class&quot;</span><span class="p">).</span><span class="n">agg</span><span class="p">(</span><span class="n">avg</span><span class="p">(</span><span class="s">&quot;cty&quot;</span><span class="p">),</span><span class="n">avg</span><span class="p">(</span><span class="s">&quot;hwy&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[69]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<html><body><table><tr><th style="text-align:left">class</th><th style="text-align:left">avg(cty)</th><th style="text-align:left">avg(hwy)</th></tr><tr><td style="text-align:left" title="subcompact">subcompact</td><td style="text-align:left" title="20.37142857142857">20.37142857142857</td><td style="text-align:left" title="28.142857142857142">28.142857142857142</td></tr><tr><td style="text-align:left" title="compact">compact</td><td style="text-align:left" title="20.127659574468087">20.127659574468087</td><td style="text-align:left" title="28.29787234042553">28.29787234042553</td></tr><tr><td style="text-align:left" title="minivan">minivan</td><td style="text-align:left" title="15.818181818181818">15.818181818181818</td><td style="text-align:left" title="22.363636363636363">22.363636363636363</td></tr><tr><td style="text-align:left" title="suv">suv</td><td style="text-align:left" title="13.5">13.5</td><td style="text-align:left" title="18.129032258064516">18.129032258064516</td></tr><tr><td style="text-align:left" title="midsize">midsize</td><td style="text-align:left" title="18.75609756097561">18.75609756097561</td><td style="text-align:left" title="27.29268292682927">27.29268292682927</td></tr><tr><td style="text-align:left" title="pickup">pickup</td><td style="text-align:left" title="13.0">13.0</td><td style="text-align:left" title="16.87878787878788">16.87878787878788</td></tr><tr><td style="text-align:left" title="2seater">2seater</td><td style="text-align:left" title="15.4">15.4</td><td style="text-align:left" title="24.8">24.8</td></tr></table></body></html>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
