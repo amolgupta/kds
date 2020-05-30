@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>index</title>
+<title>Spark RDD</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13074,27 +13074,357 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Kotlin-for-data-science">Kotlin for data science<a class="anchor-link" href="#Kotlin-for-data-science">&#182;</a></h3><p>This is a Kotlin translation of the poupular course "Applied Data science with Python specialization" by "University of Michigan" available on <a href="https://www.coursera.org/specializations/data-science-python">Coursera</a>
-Contribute to this on <a href="https://github.com/amolgupta/kds">github</a></p>
-<h4 id="Introduction-to-Data-Science-in-Python">Introduction to Data Science in Python<a class="anchor-link" href="#Introduction-to-Data-Science-in-Python">&#182;</a></h4><ul>
-<li><a href="C1W1-setup.html">Setup Juypter notebooks</a></li>
-<li>Reading a file and querying data. Exploring different frameworks to complete the same task<ul>
-<li><a href="C1W1-krangl.html">Krangl</a></li>
-<li><a href="C1W1-Smile.html">SMILE</a></li>
-<li><a href="C1W1-Spark.html">Apache Spark</a></li>
-</ul>
-</li>
-<li><a href="Dataframes.html">DataFrames</a></li>
-</ul>
-<h4 id="Applied-Plotting,-Charting-&amp;-Data-Representation-in-Kotlin">Applied Plotting, Charting &amp; Data Representation in Kotlin<a class="anchor-link" href="#Applied-Plotting,-Charting-&amp;-Data-Representation-in-Kotlin">&#182;</a></h4><h4 id="Applied-Machine-Learning-in-Kotlin">Applied Machine Learning in Kotlin<a class="anchor-link" href="#Applied-Machine-Learning-in-Kotlin">&#182;</a></h4><h4 id="Applied-Text-Mining-in-Kotlin">Applied Text Mining in Kotlin<a class="anchor-link" href="#Applied-Text-Mining-in-Kotlin">&#182;</a></h4><ul>
-<li><a href="SparkRDD.html">Spark RDD</a></li>
-</ul>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="p">%</span><span class="n">use</span> <span class="n">spark</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Read a file. This file contains the landing page of kotlin data science page.</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.sql.SparkSession</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.rdd.RDD</span>
+
+<span class="k">var</span> <span class="py">textFile</span> <span class="p">:</span> <span class="n">RDD</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">SparkSession</span><span class="p">.</span><span class="n">builder</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">orCreate</span><span class="p">.</span><span class="n">sparkContext</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">textFile</span><span class="p">(</span><span class="s">&quot;../data/data-science.md&quot;</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// line count</span>
+<span class="n">textFile</span><span class="p">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>90</pre>
+</div>
+
+</div>
 
 </div>
 </div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Read first line</span>
+<span class="n">textFile</span><span class="p">.</span><span class="n">first</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre># Kotlin for Data Science</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Show all lines with workd &quot;kotlin&quot;</span>
+<span class="n">textFile</span><span class="p">.</span><span class="n">toJavaRDD</span><span class="p">().</span><span class="n">filter</span><span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="s">&quot;kotlin&quot;</span><span class="p">)}.</span><span class="n">collect</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[[Kotlin-jupyter](https://github.com/Kotlin/kotlin-jupyter) is an open source project that brings Kotlin, ![Kotlin in Jupyter notebook]({{ url_for(&#39;asset&#39;, path=&#39;images/landing/data-science/kotlin-jupyter-kernel.png&#39;)}}), Check out Kotlin kernel&#39;s [GitHub repo](https://github.com/Kotlin/kotlin-jupyter) for installation, ![Kotlin in Zeppelin notebook]({{ url_for(&#39;asset&#39;, path=&#39;images/landing/data-science/kotlin-zeppelin-interpreter.png&#39;)}}), * [kotlin-statistics](https://github.com/thomasnield/kotlin-statistics) is a library providing extension functions for, * [Smile](https://github.com/haifengl/smile) - a comprehensive machine learning, natural language processing, linear algebra, graph, interpolation, and visualization system. Besides Java API, Smile also provides a functional [Kotlin API](http://haifengl.github.io/api/kotlin/smile-kotlin/index.html) along with Scala and Clojure API., [**Kotlin Data Science Resources**](https://github.com/thomasnield/kotlin-data-science-resources) digest from Thomas Nield.]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Spark loads the file lazily(when first action is called) and does not persist. Each time we call an action like above, spark loads the file. To persist the file we call the <code>persist</code> action.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="n">textFile</span><span class="p">.</span><span class="n">persist</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>../data/data-science.md MapPartitionsRDD[1] at textFile at &lt;unknown&gt;:0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Run a union and print first 2 lines</span>
+<span class="k">val</span> <span class="py">kotlinLines</span> <span class="p">=</span> <span class="n">textFile</span><span class="p">.</span><span class="n">toJavaRDD</span><span class="p">().</span><span class="n">filter</span><span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="s">&quot;kotlin&quot;</span><span class="p">)}.</span><span class="n">collect</span><span class="p">()</span>
+<span class="k">val</span> <span class="py">dataLines</span> <span class="p">=</span> <span class="n">textFile</span><span class="p">.</span><span class="n">toJavaRDD</span><span class="p">().</span><span class="n">filter</span><span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">)}.</span><span class="n">collect</span><span class="p">()</span>
+<span class="c1">// Take few items as the complete set may be too big</span>
+<span class="n">dataLines</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="n">kotlinLines</span><span class="p">).</span><span class="n">take</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[From building data pipelines to productionizing machine learning models, Kotlin can be a great choice for, working with data:]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Some common actions on RDD</span>
+<span class="n">println</span><span class="p">(</span><span class="n">dataLines</span><span class="p">.</span><span class="n">count</span><span class="p">())</span>
+<span class="n">println</span><span class="p">(</span><span class="n">kotlinLines</span><span class="p">.</span><span class="n">count</span><span class="p">())</span>
+<span class="n">println</span><span class="p">(</span><span class="n">dataLines</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="n">kotlinLines</span><span class="p">).</span><span class="n">count</span><span class="p">())</span>
+<span class="n">println</span><span class="p">(</span><span class="n">dataLines</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="n">kotlinLines</span><span class="p">).</span><span class="n">distinct</span><span class="p">().</span><span class="n">count</span><span class="p">())</span>
+<span class="n">println</span><span class="p">(</span><span class="n">dataLines</span><span class="p">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">kotlinLines</span><span class="p">).</span><span class="n">count</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>18
+7
+22
+22
+15
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="n">dataLines</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="n">kotlinLines</span><span class="p">).</span><span class="n">take</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[From building data pipelines to productionizing machine learning models, Kotlin can be a great choice for, working with data:]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="c1">// Mapper</span>
+<span class="n">textFile</span><span class="p">.</span><span class="n">toJavaRDD</span><span class="p">().</span><span class="n">map</span><span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">toUpperCase</span><span class="p">()}.</span><span class="n">take</span><span class="p">(</span><span class="m">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[# KOTLIN FOR DATA SCIENCE, , FROM BUILDING DATA PIPELINES TO PRODUCTIONIZING MACHINE LEARNING MODELS, KOTLIN CAN BE A GREAT CHOICE FOR, WORKING WITH DATA:, * KOTLIN IS CONCISE, READABLE AND EASY TO LEARN.]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-kotlin"><pre><span></span><span class="n">textFile</span><span class="p">.</span><span class="n">toJavaRDD</span><span class="p">().</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">it</span> <span class="p">-&gt;</span> <span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">).</span><span class="n">iterator</span><span class="p">())</span> <span class="p">}.</span><span class="n">take</span><span class="p">(</span><span class="m">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[#, Kotlin, for, Data, Science, , From, building, data, pipelines]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
